@@ -14,7 +14,7 @@ home_writer = csv.writer(home_file, delimiter = '\t', quotechar = '"', quoting =
 
 home_writer.writerow(["Price","Address"])
 
-listings = soup.findAll("div", class_="PropertyListingCard" )
+listings = soup.findAll("div", class_ = "PropertyListingCard")
 
 # print(listings)
 
