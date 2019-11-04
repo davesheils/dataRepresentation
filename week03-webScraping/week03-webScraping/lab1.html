@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>View Cars</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+
+
+
+<div class="header">
+ <h1>Cars</h1>
+</div>
+
+<h1>All Cars</h1>
+
+<div>
+  <button>Create</button>
+</div>
+
+
+<div>
+  <table class = "table">
+    <tr>
+      <th>reg</th>
+      <th>make</th>
+      <th>model</th>
+      <th>price</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
+    <tr>
+      <td>191-M0-123</td>
+      <td>Ford</td>
+      <td>Mondeo</td>
+      <td>25,000</td>
+      <td><button>update</button></td>
+      <td><button>delete</button></td>
+    </tr>
+    <tr>
+      <td>12-D-123</td>
+      <td>Fiat</td>
+      <td>Punto</td>
+      <td>4,000</td>
+      <td><button>update</button></td>
+      <td><button>delete</button></td>
+    </tr>
+    <tr>
+      <td>08-G-123</td>
+      <td>Nissan</td>
+      <td>Almera</td>
+      <td>500</td>
+      <td><button>update</button></td>
+      <td><button>delete</button></td>
+    </tr>
+  </table>
+</div>
+
+<h2><span>Create a</span><span>Update this</span>Car</h2>
+
+<div>
+  <form>
+    <div class = "form-group">
+      Reg:<input class = "form-control" type ="text" name = "reg"/><br>
+      Make: <select class = "form-control" name = "make">
+              <option selected ="selected" value = "Ford" >Ford</option>
+              <option value = "Fiat">Fiat</option>
+              <option value = "Nissan">Nissan</option>
+            </select> 
+            <br>
+      Model <input class = "form-control" type = "text" name = "model"><br>
+      Price: <input class = "form-control" type = "text" name = "price"><br>
+    </div>
+  </form>
+</div>
+
+<span><button>Create</button></span>
+<span><button>Update</button></span>
+
+
+</body>
+
+
+
+</html>

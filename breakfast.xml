@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding ="UTF-8"?>
+<breakfast>
+    <item>
+        <description>"Portion of Sausages"</description>
+        <price>2.00</price>
+        <calories>100</calories>
+    </item>
+        <item>
+        <description>"Sourdough toast"</description>
+        <price>3.00</price>
+        <calories>100</calories>
+    </item>
+        <item>
+        <description>"Poached eggs"</description>
+        <price>2.50</price>
+        <calories>100</calories>
+    </item>
+</breakfast>

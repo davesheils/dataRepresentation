@@ -62,11 +62,11 @@
 
     function updateCar(){
             
-            car = {"reg":"181 G 1234", "make":"Ford", "model":"Modeo", "price":"00"};
+            car = {"reg":"181 G 1234", "make":"Ford", "model":"Modeo", "price":1000};
             console.log(JSON.stringify(car));
             $.ajax({    
 
-                "url": "http://127.0.0.1:5000/cars"+encodeURI(car.reg),
+                "url": "http://127.0.0.1:5000/cars/"+encodeURI(car.reg),
                 "method":"PUT",
                 "data":JSON.stringify(car),
                 "dataType": "JSON",
@@ -83,11 +83,11 @@
 
     function deleteCar(){
             
-            car = {"reg":"12 D 1234"};
+            car = {"reg":"06 LH 1862"};
             console.log(JSON.stringify(car));
             $.ajax({    
 
-                "url": "http://127.0.0.1:5000/cars"+encodeURI(car.reg),
+                "url": "http://127.0.0.1:5000/cars/"+encodeURI(car.reg),
                 "method":"DELETE",
                 "data":JSON.stringify(car),
                 "dataType": "JSON",

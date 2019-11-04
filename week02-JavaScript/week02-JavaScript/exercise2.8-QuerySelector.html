@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Exercise 2.8</title>
+
+<script>
+
+function doForm() 
+{
+  console.log("do form works");
+  var employee = {}; //create employee object
+  // code to read data from form
+  var form = document.getElementById("myForm");
+  employee.firstName = form.querySelector('input[name="firstName"]').value;
+  employee.lastName = form.querySelector('input[name="lastName"]').value;
+  employee.age = form.querySelector('input[name="age"]').value;
+  // output data to console
+  console.log("Form Data =" + JSON.stringify(employee));
+}
+
+
+</script>
+
+</head>
+
+<body>
+
+<!-- Create div to contain input-->
+<div id = "myForm">
+    First Name<input type = "text" name = "firstName"/><br/>
+    Last Name<input type = "text" name = "lastName"/><br/>
+    Age<input type = "text" name = "age"/><br/>
+    <button onClick="doForm()">Go</button>
+</div>
+
+</body>
+
+
+
+</html>
