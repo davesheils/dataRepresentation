@@ -122,7 +122,7 @@
     }
     function addCarToTable(car)
     {
-        var tableElement = document.getElementById("carTable");
+        var tableElement = document.getElementById("carTableBody");
         var rowElement = tableElement.insertRow(-1);
         // set attributes from car object
         var cell1 = rowElement.insertCell(0);
@@ -239,6 +239,7 @@ function getAll(){
                         // console.log(data);
                         // return(cars);
                         // populateTable(cars);
+                        $("#carTableBody").empty();
                         for (car of data)
                         {
                           // console.log(car);
@@ -271,35 +272,25 @@ function createCar(car){
                 });
             }
 
-
 function updateCar(){
-              console.log("Update Car called");
-              var car = getCarFromForm();
-              var rowElement = document.getElementById(car.reg);
-              setCarInRow(rowElement, car);
-              // console.log(car);
-              // updateCar(car);
-              console.log(JSON.stringify(car));
-              $.ajax({    
-
-                  "url": "http://127.0.0.1:5000/cars/"+encodeURI(car.reg),
-                  "method":"PUT",
-                  "data":JSON.stringify(car),
-                  "dataType": "JSON",
-                  contentType: "application/json; charset=utf-8",
-                  "success":function(result)
-                      {
-                        console.log(result);
-                        document.getElementById("output").innerHTML = JSON.stringify(result);
-                        clearForm();
-      
-                        showViewAll();
-                    
-                      },
-                  "error":function(xhr,status,error){console.log("error: "+status+" msg:"+error);
-                  }
-                  });
+            var car = {"reg":"06 LH 1862","make":"Toyota","model":"Hatchback","price":"7000"}
+            console.log(JSON.stringify(car));
+            $.ajax({
+            "url": "http://127.0.0.1:5000/cars/"+encodeURI(car.reg),
+            "method":"PUT",
+            "data":JSON.stringify(car),
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+                    console.log(result);
+                    document.getElementById("output").innerText = JSON.stringify(result);
+            },
+            "error":function(xhr,status,error){
+                    console.log("error: "+status+" msg:"+error);
             }
+        });
+    }
+
 
 function deleteCar(r){
       console.log("deleteCar called");
@@ -353,14 +344,20 @@ function deleteCar(r){
 
 <div>
   <table class = "table" id="carTable">
-    <tr>
-      <th>reg</th>
-      <th>make</th>
-      <th>model</th>
-      <th>price</th>
-      <th>Update</th>
-      <th>Delete</th>
-    </tr>
+    <thead id="carTableHead">
+      <tr>
+        <th>reg</th>
+        <th>make</th>
+        <th>model</th>
+        <th>price</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody id = "carTableBody">
+
+    </tbody>
+    
   </table>
 </div>
 
