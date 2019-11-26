@@ -60,21 +60,26 @@ def create_car():
 # curl -i -H "Content-Type:application/json" -X POST -d "{\"reg\":\"12 D 1234\",\"make\":\"Fiat\",\"model\":\"Punto\",\"price\":3000}" http://localhost:5000/cars
 @app.route('/cars/<string:reg>', methods =['PUT'])
 def update_car(reg):
+    if not request.json:
+        abort(400)
+    reqJSON = request.json    
     foundCars=list(filter(lambda t : t['reg'] ==reg, cars))
     if len(foundCars) == 0:
         abort(404)
-    if not request.json:
-        abort(400)
-    if 'make' in request.json and type(request.json['make']) != str:
-        abort(400)
-    if 'model' in request.json and type(request.json['model']) is not str:
-        abort(400)
-    if 'price' in request.json and type(request.json['price']) is not int:
-        abort(400)
-    foundCars[0]['make']  = request.json.get('make', foundCars[0]['make'])
-    foundCars[0]['model'] =request.json.get('model', foundCars[0]['model'])
-    foundCars[0]['price'] =request.json.get('price', foundCars[0]['price'])
-    return jsonify( {'car':foundCars[0]})
+    foundCar = foundCars[0]
+    # if 'make' in request.json and type(request.json['make']) is not str:
+    #     abort(400)
+    # if 'model' in request.json and type(request.json['model']) is not str:
+    #     abort(400)
+    # if 'price' in request.json and type(request.json['price']) is not int:
+    #    abort(400)
+    if 'make' in reqJSON: # and type(reqJSON['make']) is str:
+        foundCar['make'] = reqJSON['make']
+    if 'model' in reqJSON: # and type(reqJSON['model']) is str:
+        foundCar['model'] = reqJSON['model']
+    if 'price' in reqJSON: # and type(reqJSON['price']) is int:
+        foundCar['price'] = reqJSON['price']
+    return jsonify(foundCar)
 #curl -i -H "Content-Type:application/json" -X PUT -d '{"make":"Fiesta"}' http://localhost:5000/cars/181%20G%201234
 # for windows use this one
 #curl -i -H "Content-Type:application/json" -X PUT -d "{\"make\":\"Fiesta\"}" http://localhost:5000/cars/181%20G%201234
