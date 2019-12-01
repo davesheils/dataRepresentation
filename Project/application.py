@@ -22,7 +22,7 @@ stock = [
     {"id":5,"Type":"Vinyl LP","Title":"Mark Hollis","Artist":"Mark Hollis","Genre":"Alternative","Quantity":5,"Price":24.99}
 ]
 
-# ID to keep track of stock. Will be incremented when stock items are added
+# ID to keep track of cars. Will be incremented when stock items are added
 nextID  = 6
 
 @app.route('/')
@@ -82,7 +82,6 @@ def update(id):
     foundItems = list(filter(lambda s : s['id'] == id , stock))
     if len(foundItems) == 0: # no book found
         abort(404)
-
 
     # week 08 code:
     foundItem = foundItems[0]
