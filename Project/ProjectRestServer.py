@@ -14,13 +14,19 @@ app = Flask(__name__, static_url_path='',static_folder = '.')
 
 # create python list of JSON objects 
 
-stock = [
-    {"id":1,"Type":"Book","Title":"Starve Acre","Artist":"Andrew Michael Hurley","Genre":"Horror","Quantity":25,"Price":15.99},
-    {"id":2,"Type":"CD","Title":"Path: An Ambient Journey from Windham Hill","Artist":"Various Artists","Genre":"Ambient/New Age","Quantity":10,"Price":4.95},
-    {"id":3,"Type":"CD","Title":"The Freewheelin' Bob Dylan","Artist":"Bob Dylan","Genre":"Folk/Folk-Rock","Quantity":30,"Price":9.99},
-    {"id":4,"Type":"Book","Title":"The Milkman","Artist":"Anna Burns","Genre":"Literature","Quantity":12,"Price":8.99},
-    {"id":5,"Type":"Vinyl LP","Title":"Mark Hollis","Artist":"Mark Hollis","Genre":"Alternative","Quantity":5,"Price":24.99}
-]
+# stock = [
+#    {"id":1,"Type":"Book","Title":"Starve Acre","Artist":"Andrew Michael Hurley","Genre":"Horror","Quantity":25,"Price":15.99},
+#    {"id":2,"Type":"CD","Title":"Path: An Ambient Journey from Windham Hill","Artist":"Various Artists","Genre":"Ambient/New Age","Quantity":10,"Price":4.95},
+#    {"id":3,"Type":"CD","Title":"The Freewheelin' Bob Dylan","Artist":"Bob Dylan","Genre":"Folk/Folk-Rock","Quantity":30,"Price":9.99},
+#    {"id":4,"Type":"Book","Title":"The Milkman","Artist":"Anna Burns","Genre":"Literature","Quantity":12,"Price":8.99},
+#    {"id":5,"Type":"Vinyl LP","Title":"Mark Hollis","Artist":"Mark Hollis","Genre":"Alternative","Quantity":5,"Price":24.99}
+# ]
+
+
+
+
+
+
 
 # ID to keep track of stock. Will be incremented when stock items are added
 nextID  = 6
