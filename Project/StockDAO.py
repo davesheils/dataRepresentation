@@ -21,7 +21,7 @@ class StockDAO:
 
     def create(self, values):
         cursor = self.db.cursor()
-        sql = "insert into stock (Type, Title, Artist_Author, Genre, Quantity, Price) values (%s, %s,%s, %s, %s, %s)"
+        sql = "insert into stock (Type, Title, Artist_Author, Genre, Quantity, Price, Discogs_GoodReadsID) values (%s, %s,%s, %s, %s, %s, %s)"
         cursor.execute(sql, values)
         self.db.commit()
         return cursor.lastrowid
@@ -30,8 +30,11 @@ class StockDAO:
         cursor = self.db.cursor()
         sql = "select * from stock"
         cursor.execute(sql)
-        result = cursor.fetchall()
-        return result
+        data = cursor.fetchall()
+        stockList =[]
+        for row in data:
+            stockList.append(self.convertToDictionary(row))
+        return stockList
     
     def getByID(self, id):
         cursor = self.db.cursor()
@@ -39,12 +42,12 @@ class StockDAO:
         values = (id,)
         cursor.execute(sql,values)
         result = cursor.fetchone()
-        return result
+        return self.convertToDictionary(result)
 
     def update(self, values):
         cursor = self.db.cursor()
         # need to think about this one
-        sql = "update stock set Type = %s, Title = %s Artist_Author = %s, Genre = %s, Quantity = %s, Price = %s where id = %s"
+        sql = "update stock set Type = %s, Title = %s Artist_Author = %s, Genre = %s, Quantity = %s, Price = %s, Discogs_GoodReadsID = %s where id = %s"
         cursor.execute(sql,values)
         self.db.commit()
     
@@ -56,6 +59,14 @@ class StockDAO:
         cursor.execute(sql, value)
         self.db.commit()
         print("delete executed")
+    def convertToDictionary(self, result):
+        cols = ['id', 'Type', 'Title', 'Artist_Author',  'Genre',  'Quantity', 'Price', 'Discogs_GoodReadsID']
+        item = {}
+        if result:
+            for i, col in enumerate(cols):
+                value = result[i]
+                item[col] = value
+        return(item)
 
 stockDAO = StockDAO()
 # values = (stockDAO.getAll())

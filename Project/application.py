@@ -38,7 +38,7 @@ def create():
     if not request.json:
         abort(400)
     # add code to check if correctly formatted? or can this be done in web interface?
-    newItem = (request.json['Type'], request.json['Title'], request.json['Artist_Author'], request.json['Genre'],request.json['Quantity'],request.json['Price'])
+    newItem = (request.json['Type'], request.json['Title'], request.json['Artist_Author'], request.json['Genre'],request.json['Quantity'],request.json['Price'],request.json['Discogs_GoodReadsID'] )
     stockDAO.create(newItem)
     return jsonify(newItem),201
     # curl -i -H  "Content-Type:application/json" -X POST -d '{"Type":"LP","Title":"In the Land of Grey and Pink","Artist":"Caravan","Genre":"Progressive/Jazz Rock","Quantity":7,"Price":24.99}' http://davidsheils.pythonanywhere.com/stock
@@ -63,7 +63,9 @@ def update(id):
         values[4] = reqJSON['Quantity']    
     if 'Price' in reqJSON and type(reqJSON['Price']) is float:
         values[5] = reqJSON['Price']
-        values[6] = id
+    if 'Discogs_GoodReadsID' in reqJSON and type(reqJSON['Discogs_GoodReadsID']) is float:
+        values[5] = reqJSON['Discogs_GoodReadsID']
+    values[6] = id
     # convert values back to tuple
     #values = tuple(values)
     return(values)
