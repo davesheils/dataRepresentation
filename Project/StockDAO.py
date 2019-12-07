@@ -20,6 +20,7 @@ class StockDAO:
         )
 
     def create(self, values):
+        print(values)
         cursor = self.db.cursor()
         sql = "insert into stock (Type, Title, Artist_Author, Genre, Quantity, Price, Discogs_GoodReadsID) values (%s, %s,%s, %s, %s, %s, %s)"
         cursor.execute(sql, values)
@@ -45,11 +46,13 @@ class StockDAO:
         return self.convertToDictionary(result)
 
     def update(self, values):
+        # takes a tuple object
         cursor = self.db.cursor()
-        # need to think about this one
-        sql = "update stock set Type = %s, Title = %s Artist_Author = %s, Genre = %s, Quantity = %s, Price = %s, Discogs_GoodReadsID = %s where id = %s"
+        sql = "UPDATE stock SET Type = %s, Title = %s, Artist_Author = %s, Genre = %s, Quantity = %s, Price = %s, Discogs_GoodReadsID = %s WHERE id = %s"
         cursor.execute(sql,values)
         self.db.commit()
+        # returns a json object, i.e convertToDictionary()
+        return # self.convertToDictionary(values)
     
     def delete(self, id):
         cursor = self.db.cursor()
@@ -59,6 +62,7 @@ class StockDAO:
         cursor.execute(sql, value)
         self.db.commit()
         print("delete executed")
+    
     def convertToDictionary(self, result):
         cols = ['id', 'Type', 'Title', 'Artist_Author',  'Genre',  'Quantity', 'Price', 'Discogs_GoodReadsID']
         item = {}
