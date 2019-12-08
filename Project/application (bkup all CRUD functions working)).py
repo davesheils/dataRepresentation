@@ -57,31 +57,34 @@ def create():
 # UPDATE with ['PUT']
 @app.route('/stock/<int:id>', methods = ['PUT'])
 def update(id):
-    values = list(stockDAO.getByID(id)) # need to convert to list as tuple values cant be changed
+    foundItem = stockDAO.getByID(id)
+    if not foundItem:
+        abort(404)
     if not request.json:
         abort(400)    
     reqJSON = request.json
-    if 'Type' in reqJSON and type(reqJSON['Type']) is str:
-        values[0] = reqJSON['Type']
-    if 'Title' in reqJSON and type(reqJSON['Title']) is str:
-        values[2] = reqJSON['Title']
-    if 'Artist_Author' in reqJSON and type(reqJSON['Artist_Author']) is str:
-        values[2] = reqJSON['Artist_Author']
-    if 'Genre' in reqJSON and type(reqJSON['Genre']) is str:
-        values[3] = reqJSON['Genre']
-    if 'Quantity' in reqJSON and type(reqJSON['Quantity']) is int:
-        values[4] = reqJSON['Quantity']    
-    if 'Price' in reqJSON and type(reqJSON['Price']) is float:
-        values[5] = reqJSON['Price']
-    if 'Discogs_GoodReadsID' in reqJSON and type(reqJSON['Discogs_GoodReadsID']) is float:
-        values[5] = reqJSON['Discogs_GoodReadsID']
-    values[6] = id
-    # convert values back to tuple
-    #values = tuple(values)
-    return(values)
-    # stockDAO.update(values)
-    # Updating with curl
-    # curl -i -H  "Content-Type:application/json" -X PUT -d '{"Genre":"Alternative/Punk"}' http://davidsheils.pythonanywhere.com/stock/6
+    if 'Type' in reqJSON: # and type(reqJSON['Type']) is str:
+        foundItem['Type'] = reqJSON['Type']
+    if 'Title' in reqJSON: # and type(reqJSON['Title']) is str:
+        foundItem['Title'] = reqJSON['Title']
+    if 'Artist_Author' in reqJSON: # and type(reqJSON['Artist_Author']) is str:
+        foundItem['Artist_Author'] = reqJSON['Artist_Author']
+    if 'Genre' in reqJSON: # and type(reqJSON['Genre']) is str:
+        foundItem['Genre'] = reqJSON['Genre']
+    if 'Quantity' in reqJSON: # and type(reqJSON['Quantity']) is int:
+        foundItem['Quantity'] = reqJSON['Quantity']    
+    if 'Price' in reqJSON: # and type(reqJSON['Price']) is float:
+        foundItem['Price'] = reqJSON['Price']
+    if 'Discogs_GoodReadsID' in reqJSON: # and type(reqJSON['Discogs_GoodReadsID']) is str:
+        foundItem['Discogs_GoodReadsID'] = reqJSON['Discogs_GoodReadsID']
+    
+    values = (foundItem['Type'],foundItem['Title'],foundItem['Artist_Author'],foundItem['Genre'],foundItem['Quantity'],foundItem['Price'],foundItem['Discogs_GoodReadsID'], foundItem['id'])
+        
+    # values = tuple(list(foundItem.values())) # not sure why this does not work here ...
+     
+    stockDAO.update(values)
+    return jsonify(foundItem)
+
 
 # DELETE with ['DELETE']
 @app.route('/stock/<int:id>', methods = ['DELETE'])
