@@ -32,7 +32,7 @@ def get_cars():
     return jsonify( {'cars':cars})
 # curl -i http://localhost:5000/cars
 
-@app.route('/cars/<string:reg>', methods =['GET', 'POST', 'PUT'])
+@app.route('/cars/<string:reg>', methods =['GET'])
 def get_car(reg):
     foundCars = list(filter(lambda t : t['reg'] == reg , cars))
     if len(foundCars) == 0:
